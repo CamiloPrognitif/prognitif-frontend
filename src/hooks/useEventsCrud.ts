@@ -1,39 +1,53 @@
 // src/hooks/useEventsCrud.ts
 import { useState, useEffect, useCallback } from "react";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { Event } from "../components/EventList"; // usa tu tipo Event
-
-const STORAGE_KEY = "prognitif:events";
+import { getEvents, saveEvents } from "./../services/eventsService";
+import { Event } from "../types/Event";
 
 export default function useEventsCrud() {
   const [events, setEvents] = useState<Event[]>([]);
 
-  // Carga inicial
+  // Load on mount
   useEffect(() => {
-    AsyncStorage.getItem(STORAGE_KEY)
-      .then((raw) => {
-        if (raw) setEvents(JSON.parse(raw));
-      })
-      .catch(console.error);
+    getEvents().then(setEvents).catch(console.error);
   }, []);
 
-  // Función para persistir
-  const persist = useCallback((newEvents: Event[]) => {
-    setEvents(newEvents);
-    AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(newEvents)).catch(
-      console.error
-    );
-  }, []);
+  const addEvent = useCallback(
+    (e: Event) => {
+      const next = [...events, e];
+      setEvents(next);
+      return saveEvents(next);
+    },
+    [events]
+  );
 
-  return {
-    events,
-    addEvent: (e: Event) => persist([...events, e]),
-    updateEvent: (updated: Event) =>
-      persist(events.map((e) => (e.id === updated.id ? updated : e))),
-    toggleViewed: (id: string) =>
-      persist(
-        events.map((e) => (e.id === id ? { ...e, viewed: !e.viewed } : e))
-      ),
-    removeEvent: (id: string) => persist(events.filter((e) => e.id !== id)),
-  };
+  const updateEvent = useCallback(
+    (updated: Event) => {
+      const next = events.map((e) => (e.id === updated.id ? updated : e));
+      setEvents(next);
+      return saveEvents(next);
+    },
+    [events]
+  );
+
+  const toggleViewed = useCallback(
+    (id: string) => {
+      const next = events.map((e) =>
+        e.id === id ? { ...e, viewed: !e.viewed } : e
+      );
+      setEvents(next);
+      return saveEvents(next);
+    },
+    [events]
+  );
+
+  const removeEvent = useCallback(
+    (id: string) => {
+      const next = events.filter((e) => e.id !== id);
+      setEvents(next);
+      return saveEvents(next);
+    },
+    [events]
+  );
+
+  return { events, addEvent, updateEvent, toggleViewed, removeEvent };
 }

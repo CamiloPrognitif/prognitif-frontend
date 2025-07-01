@@ -11,8 +11,8 @@ import {
 import tw from "twrnc";
 import { LinearGradient } from "expo-linear-gradient";
 import { MaterialIcons, MaterialCommunityIcons } from "@expo/vector-icons";
-
-import useEventsCrud, { Event } from "../hooks/useEventsCrud";
+import useEventsCrud from "../hooks/useEventsCrud";
+import { Event } from "../types/Event";
 import ModalForm from "../components/ModalForm";
 import HealthInfoModal from "../components/HealthInfoModal";
 import VitalsSimulator from "../components/VitalsSimulator";
@@ -90,7 +90,8 @@ export default function OverviewScreen() {
 
   // State para el modal de Health Info
   const [healthModalVisible, setHealthModalVisible] = useState(false);
-  const [healthInfo, setHealthInfo] = useState(
+  // Después: un Record genérico string→string
+  const [healthInfo, setHealthInfo] = useState<Record<string, string>>(
     Object.fromEntries(sections.map((s) => [s.key, s.text]))
   );
 
