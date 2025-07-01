@@ -4,7 +4,7 @@ import { Modal, View, Text, Pressable, TextInput } from "react-native";
 import tw from "twrnc";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { MaterialIcons } from "@expo/vector-icons";
-import { Event } from "../hooks/useEventsCrud";
+import { Event } from "../types/Event";
 
 interface ModalFormProps {
   isVisible: boolean;
