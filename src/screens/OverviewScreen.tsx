@@ -118,7 +118,7 @@ export default function OverviewScreen() {
             <View style={tw`flex-row justify-between items-center mx-4 mt-8`}>
               <Breadcrumb
                 items={[
-                  { label: "Inicio" },
+                  { label: "Home" },
                   { label: "Monitoring" },
                   { label: "Susana Mejía" },
                 ]}
@@ -156,34 +156,48 @@ export default function OverviewScreen() {
 
         {/* User card */}
         <LinearGradient
-          colors={["#A5F3FC", "#6EE7B7"]}
+          colors={["#CCCCFF", "#94c9e4", "#6EE7B7"]}
           start={[0, 0]}
           end={[1, 1]}
-          style={tw`rounded-xl mx-4 mt-2 p-4`} // reducimos mt-4 a mt-2
+          style={tw`rounded-xl mx-4 mt-2 p-4`}
         >
-          <Text style={tw`text-white font-semibold text-base`}>
+          <Text style={tw`text-black font-semibold text-base`}>
             Susana Mejía Echeverry
           </Text>
-          <Text style={tw`text-white`}>Nacimiento: 30/07/1943</Text>
-          <Text style={tw`text-white`}>Alcohol: Moderado</Text>
-          <Text style={tw`text-white`}>Fuma: Nunca</Text>
+          <View style={tw`flex-row justify-between mt-3`}>
+            <Text style={tw`text-black text-sm`}>30/07/1943</Text>
+            <Text style={tw`text-black text-sm`}>Alcohol: Moderate</Text>
+          </View>
+          <View style={tw`flex-row justify-between mt-1`}>
+            <Text style={tw`text-black text-sm`}>Sura</Text>
+            <Text style={tw`text-black text-sm`}>Smoke: Never</Text>
+          </View>
         </LinearGradient>
 
         {/* Health information header */}
-        <View style={tw`mx-4 mt-6 mb-2 flex-row justify-between items-center`}>
-          <Text style={tw`text-base font-semibold`}>Health information</Text>
-          <Pressable onPress={() => setHealthModalVisible(true)}>
-            <Text style={tw`text-blue-600`}>Edit</Text>
+        <View style={tw`mx-4 mt-6 mb-2 flex-row items-center`}>
+          {/* Título centrado y un poco más grande */}
+          <Text style={tw`flex-1 text-lg font-bold text-center`}>
+            Health information
+          </Text>
+          {/* Botón azul con texto blanco */}
+          <Pressable
+            onPress={() => setHealthModalVisible(true)}
+            style={tw`bg-blue-600 px-4 py-1 rounded-full`}
+            hitSlop={8}
+          >
+            <Text style={tw`text-white font-medium`}>Edit</Text>
           </Pressable>
         </View>
 
-        {/* 1) Tab strips */}
+        {/* Tab strips */}
         <View style={tw`flex-row mx-4 mb-2`}>
           {sections.map((sec) => (
             <Pressable
               key={sec.key}
               onPress={() => setActiveTab(sec.key)}
               style={tw`flex-1 items-center py-2`}
+              hitSlop={8}
             >
               <Text
                 style={tw`${
@@ -198,16 +212,16 @@ export default function OverviewScreen() {
           ))}
         </View>
 
-        {/* 2) Widget con el texto de la pestaña activa */}
+        {/* Active tab content */}
         <View style={tw`bg-white mx-4 p-4 rounded-xl mb-4 shadow`}>
           <View style={tw`flex-row items-start`}>
             <MaterialCommunityIcons
               name="stethoscope"
-              size={24}
-              style={tw`text-gray-700 mr-3`}
+              size={62} // antes 24, ahora 32
+              style={tw`text-gray-700 mr-4`} // margen derecho un pelín mayor
             />
             <View style={{ flex: 1, maxHeight: 120 }}>
-              <ScrollView nestedScrollEnabled={true}>
+              <ScrollView nestedScrollEnabled>
                 <Text style={tw`text-gray-700`}>{healthInfo[activeTab]}</Text>
               </ScrollView>
             </View>
@@ -225,9 +239,9 @@ export default function OverviewScreen() {
         )}
 
         {/* Recent Events header */}
-        <Text style={tw`mx-4 mt-4 mb-2 text-base font-semibold`}>
-          Recent Events
-        </Text>
+        <View style={tw`mx-4 mt-4 mb-2`}>
+          <Text style={tw`text-base font-bold text-center`}>Recent Events</Text>
+        </View>
 
         {/* Recent Events 4-columnas */}
         <View style={tw`mx-4 bg-white rounded-xl overflow-hidden shadow`}>
@@ -356,6 +370,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 56, // ajusta si lo necesitas
     right: 16, // coincide con mx-4 = 16px
+    width: "92%",
     backgroundColor: "#fff",
     borderRadius: 6,
     shadowColor: "#000",
