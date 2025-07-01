@@ -1,6 +1,13 @@
 // src/screens/OverviewScreen.tsx
 import React, { useState, useCallback } from "react";
-import { ScrollView, Text, View, Pressable } from "react-native";
+import {
+  ScrollView,
+  Text,
+  View,
+  Pressable,
+  Alert,
+  StyleSheet,
+} from "react-native";
 import tw from "twrnc";
 import { LinearGradient } from "expo-linear-gradient";
 import { MaterialIcons, MaterialCommunityIcons } from "@expo/vector-icons";
@@ -9,7 +16,8 @@ import useEventsCrud, { Event } from "../hooks/useEventsCrud";
 import ModalForm from "../components/ModalForm";
 import HealthInfoModal from "../components/HealthInfoModal";
 import VitalsSimulator from "../components/VitalsSimulator";
-
+import Breadcrumb, { Crumb } from "../components/Breadcrumb";
+import { useNavigation } from "@react-navigation/native";
 const sections = [
   {
     key: "Diagnosis",
@@ -24,6 +32,9 @@ export default function OverviewScreen() {
   // CRUD hook
   const { events, addEvent, updateEvent, toggleViewed, removeEvent } =
     useEventsCrud();
+
+  // Menu state
+  const [menuVisible, setMenuVisible] = useState(false);
 
   // Modal state (Eventos)
   const [modalVisible, setModalVisible] = useState(false);
@@ -63,6 +74,8 @@ export default function OverviewScreen() {
     [removeEvent]
   );
 
+  const navigation = useNavigation();
+
   // Formatea “X min ago”
   const getTimeAgo = () => {
     if (!lastUpdate) return "";
@@ -98,12 +111,55 @@ export default function OverviewScreen() {
   return (
     <>
       <ScrollView style={tw`flex-1 bg-gray-50`}>
+        {/* Contenedor relativo para header + menú */}
+        <View style={styles.headerWrapper}>
+          {/* Tu header original */}
+          <View style={styles.headerWrapper}>
+            <View style={tw`flex-row justify-between items-center mx-4 mt-8`}>
+              <Breadcrumb
+                items={[
+                  { label: "Inicio" },
+                  { label: "Monitoring" },
+                  { label: "Susana Mejía" },
+                ]}
+              />
+              <Pressable hitSlop={8} onPress={() => setMenuVisible((v) => !v)}>
+                <MaterialIcons
+                  name="menu"
+                  size={24}
+                  style={tw`text-gray-700`}
+                  accessibilityLabel="Abrir menú"
+                />
+              </Pressable>
+            </View>
+
+            {/* Dropdown posicionado dentro de ese wrapper */}
+            {menuVisible && (
+              <View style={styles.dropdown}>
+                {["Element 1", "Element 2", "Element 3"].map((el) => (
+                  <Pressable
+                    key={el}
+                    onPress={() => {
+                      Alert.alert(el);
+                      setMenuVisible(false);
+                    }}
+                    style={tw`py-2 px-4 border-b border-gray-200`}
+                    hitSlop={8}
+                  >
+                    <Text>{el}</Text>
+                  </Pressable>
+                ))}
+              </View>
+            )}
+          </View>
+        </View>
+
         {/* User card */}
         <LinearGradient
           colors={["#A5F3FC", "#6EE7B7"]}
           start={[0, 0]}
           end={[1, 1]}
-          style={tw`rounded-xl mx-4 mt-4 p-4`}
+          style={tw`rounded-xl mx-4 mt-2 p-4`} // reducimos mt-4 a mt-2
         >
           <Text style={tw`text-white font-semibold text-base`}>
             Susana Mejía Echeverry
@@ -290,3 +346,23 @@ export default function OverviewScreen() {
     </>
   );
 }
+
+const styles = StyleSheet.create({
+  headerWrapper: {
+    position: "relative",
+    marginBottom: 8,
+  },
+  dropdown: {
+    position: "absolute",
+    top: 56, // ajusta si lo necesitas
+    right: 16, // coincide con mx-4 = 16px
+    backgroundColor: "#fff",
+    borderRadius: 6,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 5,
+    zIndex: 20,
+  },
+});
