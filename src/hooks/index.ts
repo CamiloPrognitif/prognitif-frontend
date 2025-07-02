@@ -1,2 +1,2 @@
-export { default as useEventsCrud } from "./useEventsCrud";
+export { useEventsCrud } from "./useEventsCrud";
 export { useMockVitals } from "./useMockVitals";

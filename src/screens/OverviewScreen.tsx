@@ -286,9 +286,15 @@ export default function OverviewScreen() {
                     setEditing(e);
                     setModalVisible(true);
                   }}
-                  style={tw`ml-2`}
+                  style={tw`ml-2 flex-1`}
                 >
-                  <Text>{e.label}</Text>
+                  <Text
+                    numberOfLines={1}
+                    ellipsizeMode="tail"
+                    style={tw`text-base`}
+                  >
+                    {e.label}
+                  </Text>
                 </Pressable>
               </View>
               {/* Columna 2: date */}
