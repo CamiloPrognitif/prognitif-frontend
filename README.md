@@ -1,7 +1,6 @@
 🩺 Prognitif – Frontend Assessment
 
-🎯 Objective
-Rebuild the “Patient Monitoring” view of Prognitif in React Native (Expo), ensuring:
+🎯 Objective Rebuild the “Patient Monitoring” view of Prognitif in React Native (Expo), ensuring:
 
 * Well-presented information
 * Interactivity (edit health info, CRUD for events)
@@ -22,6 +21,16 @@ Rebuild the “Patient Monitoring” view of Prognitif in React Native (Expo), e
 
 * 🐙 Source code: [https://github.com/R4D4M4NTHYS24/prognitif-ui](https://github.com/R4D4M4NTHYS24/prognitif-ui)
 * 📱 Expo Build (Android & iOS): [https://expo.dev/accounts/r4d4m4nthys/projects/prognitif/builds/2468ce60-8ed0-46f1-a8d2-3786dec91bee](https://expo.dev/accounts/r4d4m4nthys/projects/prognitif/builds/2468ce60-8ed0-46f1-a8d2-3786dec91bee)
+
+🖼️ Screenshots
+
+Below are some relevant screens for reference:
+
+![Overview Screen](./screenshots/screenshot1.jpg)
+
+![Edit Health Info Modal](./screenshots/screenshot2.jpg)
+
+![Add Event Modal](./screenshots/screenshot3.jpg)
 
 🚀 Installation & Running
 
