@@ -35,11 +35,11 @@ Below are some relevant screens for reference:
 
 Below are some relevant screens for reference:
 
-![Overview Screen](./screenshots/overview.png)
+![Overview Screen](./screenshots/screenshot1.jpg)
 
-![Edit Health Info Modal](./screenshots/edit-health-info.png)
+![Edit Health Info Modal](./screenshots/screenshot2.jpg)
 
-![Add Event Modal](./screenshots/add-event.png)
+![Add Event Modal](./screenshots/screenshot3.jpg)
 
 🚀 Installation & Running
 
