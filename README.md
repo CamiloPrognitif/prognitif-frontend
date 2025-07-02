@@ -24,13 +24,22 @@
 
 🖼️ Screenshots
 
+**Recommended image sizes:**
+
+* **Width:** 600px max (to fit documentation layout)
+* **Height:** 400px max (to avoid excessive vertical space)
+* **Format:** PNG or JPG at 72 DPI
+* **Crop/Padding:** minimal whitespace; focus on UI area
+
 Below are some relevant screens for reference:
 
-![Overview Screen](./screenshots/screenshot1.jpg)
+Below are some relevant screens for reference:
 
-![Edit Health Info Modal](./screenshots/screenshot2.jpg)
+![Overview Screen](./screenshots/overview.png)
 
-![Add Event Modal](./screenshots/screenshot3.jpg)
+![Edit Health Info Modal](./screenshots/edit-health-info.png)
+
+![Add Event Modal](./screenshots/add-event.png)
 
 🚀 Installation & Running
 
