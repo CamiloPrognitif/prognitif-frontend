@@ -31,15 +31,7 @@
 * **Format:** PNG or JPG at 72 DPI
 * **Crop/Padding:** minimal whitespace; focus on UI area
 
-Below are some relevant screens for reference:
-
-Below are some relevant screens for reference:
-
-![Overview Screen](./screenshots/screenshot1.jpg)
-
-![Edit Health Info Modal](./screenshots/screenshot2.jpg)
-
-![Add Event Modal](./screenshots/screenshot3.jpg)
+For full-size screenshots, please visit the [screenshots folder](https://github.com/R4D4M4NTHYS24/prognitif-ui/tree/main/screenshots).
 
 🚀 Installation & Running
 
