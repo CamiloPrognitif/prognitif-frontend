@@ -24,13 +24,6 @@
 
 🖼️ Screenshots
 
-**Recommended image sizes:**
-
-* **Width:** 600px max (to fit documentation layout)
-* **Height:** 400px max (to avoid excessive vertical space)
-* **Format:** PNG or JPG at 72 DPI
-* **Crop/Padding:** minimal whitespace; focus on UI area
-
 For full-size screenshots, please visit the [screenshots folder](https://github.com/R4D4M4NTHYS24/prognitif-ui/tree/main/screenshots).
 
 🚀 Installation & Running
