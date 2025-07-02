@@ -1,4 +1,3 @@
-// src/screens/OverviewScreen.tsx
 import React, { useState, useCallback } from "react";
 import {
   ScrollView,
@@ -11,13 +10,20 @@ import {
 import tw from "twrnc";
 import { LinearGradient } from "expo-linear-gradient";
 import { MaterialIcons, MaterialCommunityIcons } from "@expo/vector-icons";
-import useEventsCrud from "../hooks/useEventsCrud";
-import { Event } from "../types/Event";
-import ModalForm from "../components/ModalForm";
-import HealthInfoModal from "../components/HealthInfoModal";
-import VitalsSimulator from "../components/VitalsSimulator";
-import Breadcrumb, { Crumb } from "../components/Breadcrumb";
+
+import { useEventsCrud } from "../hooks";
+import type { Event } from "../types";
+import {
+  ModalForm,
+  HealthInfoModal,
+  VitalsSimulator,
+  Breadcrumb,
+} from "../components";
+import type { Crumb } from "../components/Breadcrumb";
+
 import { useNavigation } from "@react-navigation/native";
+import { SECTIONS } from "../constants";
+
 const sections = [
   {
     key: "Diagnosis",
@@ -157,10 +163,12 @@ export default function OverviewScreen() {
 
         {/* User card */}
         <LinearGradient
-          colors={["#CCCCFF", "#94c9e4", "#6EE7B7"]}
+          // Aquí van los colores explícitos
+          colors={["#CCCCFF", "#94c9E4", "#6EE7B7"]}
           start={[0, 0]}
           end={[1, 1]}
-          style={tw`rounded-xl mx-4 mt-2 p-4`}
+          // Usamos twrnc para padding, margen y borderRadius
+          style={tw`rounded-lg mx-4 mt-2 p-4`}
         >
           <Text style={tw`text-black font-semibold text-base`}>
             Susana Mejía Echeverry
@@ -246,7 +254,7 @@ export default function OverviewScreen() {
 
         {/* Recent Events 4-columnas */}
         <View style={tw`mx-4 bg-white rounded-xl overflow-hidden shadow`}>
-          {events.map((e) => (
+          {events.map((e: Event) => (
             <View
               key={e.id}
               style={tw`flex-row items-center px-4 py-3 border-b border-gray-200`}

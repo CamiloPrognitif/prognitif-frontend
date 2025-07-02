@@ -1,9 +1,8 @@
-// src/components/VitalsSimulator.tsx
 import React from "react";
 import { View, Text } from "react-native";
 import tw from "twrnc";
-import { useMockVitals } from "../hooks/useMockVitals";
-import { Vital } from "../services/vitalsService";
+import { useMockVitals } from "@hooks/useMockVitals";
+import type { Vital } from "@types";
 
 export default function VitalsSimulator() {
   const vitals = useMockVitals(/* opcionalmente el intervalo */);

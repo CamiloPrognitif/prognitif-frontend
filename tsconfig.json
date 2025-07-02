@@ -1,7 +1,22 @@
 {
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
-    "strict": true
+    "strict": true,
+    "baseUrl": "src",
+    "paths": {
+      "@components/*": ["components/*"],
+      "@hooks/*": ["hooks/*"],
+      "@services/*": ["services/*"],
+
+      // para imports a archivos concretos
+      "@types/*": ["types/*"],
+      "@constants/*": ["constants/*"],
+
+      // para hacer `import { Section } from "@types";`
+      "@types": ["types/index.ts"],
+      // para hacer `import { SECTIONS } from "@constants";`
+      "@constants": ["constants/index.ts"]
+    }
   },
   "include": ["declarations.d.ts", "src/**/*", "App.tsx"]
 }
