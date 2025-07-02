@@ -1,18 +1,10 @@
-// src/components/EventList.tsx
 import React from "react";
 import { View, Text, Pressable } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import tw from "twrnc";
 
-export interface Event {
-  id: string;
-  label: string;
-  type: "stress" | "warning" | string;
-  time: string;
-  viewed: boolean;
-}
+import type { Event } from "@types";
 
-// src/components/EventList.tsx
 interface EventListProps {
   events: Event[];
   onToggle: (id: string) => void;
@@ -39,17 +31,18 @@ export default function EventList({
             <MaterialIcons
               name={e.type === "stress" ? "sentiment-dissatisfied" : "warning"}
               size={20}
-              style={tw`${
-                e.type === "stress" ? "text-yellow-500" : "text-red-500"
-              }`}
+              style={tw`
+                ${e.type === "stress" ? "text-yellow-500" : "text-red-500"}
+              `}
             />
             <Text style={tw`ml-2`}>{e.label}</Text>
           </Pressable>
           <Pressable onPress={() => onToggle(e.id)}>
             <View
-              style={tw`w-6 h-6 border-2 rounded ${
-                e.viewed ? "bg-blue-500" : "border-gray-400"
-              }`}
+              style={tw`
+                w-6 h-6 border-2 rounded
+                ${e.viewed ? "bg-blue-500" : "border-gray-400"}
+              `}
             />
           </Pressable>
         </View>

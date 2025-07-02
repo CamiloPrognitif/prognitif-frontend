@@ -1,16 +1,9 @@
 // src/hooks/useMockVitals.ts
 import { useState, useEffect } from "react";
-import {
-  VITALS_CONFIG,
-  generateRandomVitals,
-  Vital,
-} from "./../services/vitalsService";
+import { VITALS_CONFIG, generateRandomVitals } from "@services/vitalsService";
+import type { Vital } from "@types";
 
-/**
- * Hook that returns an array of current simulated vitals, updating every intervalMs.
- */
 export function useMockVitals(intervalMs = 5000): Vital[] {
-  // Initialize at midpoint
   const [vitals, setVitals] = useState<Vital[]>(() =>
     VITALS_CONFIG.map((v) => ({
       ...v,

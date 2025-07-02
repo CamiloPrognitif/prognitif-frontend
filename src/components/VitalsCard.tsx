@@ -2,14 +2,9 @@
 import React from "react";
 import { View, Text } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
+import type { Vital } from "@types";
 
-export interface Vital {
-  label: string;
-  value: string;
-  icon: string; // debe ser un nombre válido de FontAwesome5
-}
-
-export function VitalsGrid({ data }: { data: Vital[] }) {
+export default function VitalsGrid({ data }: { data: Vital[] }) {
   return (
     <View className="flex-row flex-wrap justify-between px-4">
       {data.map((v) => (

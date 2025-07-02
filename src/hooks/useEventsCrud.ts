@@ -1,12 +1,12 @@
 // src/hooks/useEventsCrud.ts
 import { useState, useEffect, useCallback } from "react";
-import { getEvents, saveEvents } from "./../services/eventsService";
-import { Event } from "../types/Event";
+import { getEvents, saveEvents } from "@services/eventsService";
+import type { Event } from "@types";
 
-export default function useEventsCrud() {
+export function useEventsCrud() {
   const [events, setEvents] = useState<Event[]>([]);
 
-  // Load on mount
+  // Carga inicial desde el service
   useEffect(() => {
     getEvents().then(setEvents).catch(console.error);
   }, []);
@@ -22,7 +22,7 @@ export default function useEventsCrud() {
 
   const updateEvent = useCallback(
     (updated: Event) => {
-      const next = events.map((e) => (e.id === updated.id ? updated : e));
+      const next = events.map((ev) => (ev.id === updated.id ? updated : ev));
       setEvents(next);
       return saveEvents(next);
     },
@@ -31,8 +31,8 @@ export default function useEventsCrud() {
 
   const toggleViewed = useCallback(
     (id: string) => {
-      const next = events.map((e) =>
-        e.id === id ? { ...e, viewed: !e.viewed } : e
+      const next = events.map((ev) =>
+        ev.id === id ? { ...ev, viewed: !ev.viewed } : ev
       );
       setEvents(next);
       return saveEvents(next);
@@ -42,7 +42,7 @@ export default function useEventsCrud() {
 
   const removeEvent = useCallback(
     (id: string) => {
-      const next = events.filter((e) => e.id !== id);
+      const next = events.filter((ev) => ev.id !== id);
       setEvents(next);
       return saveEvents(next);
     },
