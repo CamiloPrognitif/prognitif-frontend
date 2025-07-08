@@ -13,7 +13,14 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.r4d4m4nthys.prognitif",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      },
+      "runtimeVersion": {
+        "policy": "sdkVersion"
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -21,7 +28,10 @@
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
-      "package": "com.r4d4m4nthys.prognitif"
+      "package": "com.r4d4m4nthys.prognitif",
+      "runtimeVersion": {
+        "policy": "appVersion"
+      }
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -30,6 +40,9 @@
       "eas": {
         "projectId": "c4308a5c-d092-4df1-8e86-d4695beec4b0"
       }
+    },
+    "updates": {
+      "url": "https://u.expo.dev/c4308a5c-d092-4df1-8e86-d4695beec4b0"
     }
   }
 }
