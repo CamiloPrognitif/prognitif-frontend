@@ -4,18 +4,13 @@
     "strict": true,
     "baseUrl": "src",
     "paths": {
-      "@components/*": ["components/*"],
-      "@hooks/*": ["hooks/*"],
-      "@services/*": ["services/*"],
-
-      // para imports a archivos concretos
+      "@api/*": ["api/*"],
+      "@state/*": ["state/*"],
+      "@theme/*": ["theme/*"],
       "@types/*": ["types/*"],
-      "@constants/*": ["constants/*"],
-
-      // para hacer `import { Section } from "@types";`
-      "@types": ["types/index.ts"],
-      // para hacer `import { SECTIONS } from "@constants";`
-      "@constants": ["constants/index.ts"]
+      "@utils/*": ["utils/*"],
+      "@features/*": ["features/*"],
+      "@navigation/*": ["navigation/*"]
     }
   },
   "include": ["declarations.d.ts", "src/**/*", "App.tsx"]

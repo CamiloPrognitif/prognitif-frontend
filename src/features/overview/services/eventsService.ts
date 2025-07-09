@@ -1,7 +1,6 @@
 // src/services/eventsService.ts
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { Event } from "../types/Event";
-
+import { Event } from "../../../types";
 
 const STORAGE_KEY = "prognitif:events";
 

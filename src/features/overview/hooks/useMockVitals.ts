@@ -1,7 +1,7 @@
 // src/hooks/useMockVitals.ts
 import { useState, useEffect } from "react";
-import { VITALS_CONFIG, generateRandomVitals } from "@services/vitalsService";
-import type { Vital } from "@types";
+import { VITALS_CONFIG, generateRandomVitals } from "../services/vitalsService";
+import type { Vital } from "types";
 
 export function useMockVitals(intervalMs = 5000): Vital[] {
   const [vitals, setVitals] = useState<Vital[]>(() =>
