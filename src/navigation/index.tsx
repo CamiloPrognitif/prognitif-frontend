@@ -1,52 +1,26 @@
 // src/navigation/index.tsx
 import React from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { MaterialIcons } from "@expo/vector-icons";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-// Importa aquí las pantallas de cada feature
+// Importa tus pantallas con default export
 import AuthScreen from "../features/auth/screen";
 import CareGroupsScreen from "../features/care-groups/screen";
-import OverviewScreen from "../features/overview/OverviewScreen";
-import TreatmentScreen from "../features/treatment/screen";
-import DevicesScreen from "../features/devices/screen";
+import OverviewScreen from "../features/overview/screen";
 
-const Tab = createBottomTabNavigator();
+export type RootStackParamList = {
+  Auth: undefined;
+  CareGroups: undefined;
+  Overview: { careGroupId: string; careGroupName: string };
+};
+
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function AppNavigator() {
   return (
-    <NavigationContainer>
-      <Tab.Navigator
-        screenOptions={({ route }) => ({
-          headerShown: false,
-          tabBarShowLabel: true,
-          tabBarActiveTintColor: "#2563EB",
-          tabBarInactiveTintColor: "#6B7280",
-          tabBarStyle: {
-            backgroundColor: "#FFF",
-            borderTopWidth: 1,
-            borderTopColor: "#E5E7EB",
-            height: 80,
-            paddingBottom: 8,
-          },
-          tabBarIcon: ({ color }) => {
-            const map: Record<string, keyof typeof MaterialIcons.glyphMap> = {
-              Auth: "login",
-              CareGroups: "groups",
-              Overview: "person",
-              Treatment: "local-hospital",
-              Devices: "devices-other",
-            };
-            return (
-              <MaterialIcons name={map[route.name]} size={24} color={color} />
-            );
-          },
-        })}
-      >
-        <Tab.Screen name="Overview" component={OverviewScreen} />
-        <Tab.Screen name="Treatment" component={TreatmentScreen} />
-        <Tab.Screen name="Devices" component={DevicesScreen} />
-      </Tab.Navigator>
-    </NavigationContainer>
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="Auth" component={AuthScreen} />
+      <Stack.Screen name="CareGroups" component={CareGroupsScreen} />
+      <Stack.Screen name="Overview" component={OverviewScreen} />
+    </Stack.Navigator>
   );
 }
