@@ -20,8 +20,12 @@ import VitalsSimulator from "./components/VitalsSimulator";
 import Breadcrumb from "./components/Breadcrumb";
 import type { Crumb } from "./components/Breadcrumb";
 
-import { useNavigation } from "@react-navigation/native";
+import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import { SECTIONS } from "./constants";
+
+import { RootStackParamList } from "../../navigation";
+
+type OVRoute = RouteProp<RootStackParamList, "Overview">;
 
 const sections = [
   {
@@ -48,6 +52,10 @@ export default function OverviewScreen() {
   // Timestamp de última operación
   const [lastUpdate, setLastUpdate] = useState<Date | null>(null);
   const recordUpdate = useCallback(() => setLastUpdate(new Date()), []);
+
+  const route = useRoute<OVRoute>();
+  const { careGroupName, birthDate, careCenter, alcoholLevel, smokeFrequency } =
+    route.params;
 
   // Wrappers que persisten + marcan timestamp
   const handleAdd = useCallback(
@@ -122,13 +130,7 @@ export default function OverviewScreen() {
           {/* Tu header original */}
           <View style={styles.headerWrapper}>
             <View style={tw`flex-row justify-between items-center mx-4 mt-8`}>
-              <Breadcrumb
-                items={[
-                  { label: "Home" },
-                  { label: "Monitoring" },
-                  { label: "Susana Mejía" },
-                ]}
-              />
+              <Breadcrumb items={[{ label: "User Monitoring Group" }]} />
               <Pressable hitSlop={8} onPress={() => setMenuVisible((v) => !v)}>
                 <MaterialIcons
                   name="menu"
@@ -160,25 +162,23 @@ export default function OverviewScreen() {
           </View>
         </View>
 
-        {/* User card */}
+        {/* User card dinámico */}
         <LinearGradient
-          // Aquí van los colores explícitos
           colors={["#CCCCFF", "#94c9E4", "#6EE7B7"]}
           start={[0, 0]}
           end={[1, 1]}
-          // Usamos twrnc para padding, margen y borderRadius
           style={tw`rounded-lg mx-4 mt-2 p-4`}
         >
           <Text style={tw`text-black font-semibold text-base`}>
-            Susana Mejía Echeverry
+            {careGroupName}
           </Text>
           <View style={tw`flex-row justify-between mt-3`}>
-            <Text style={tw`text-black text-sm`}>30/07/1943</Text>
-            <Text style={tw`text-black text-sm`}>Alcohol: Moderate</Text>
+            <Text style={tw`text-black text-sm`}>{birthDate}</Text>
+            <Text style={tw`text-black text-sm`}>Alcohol: {alcoholLevel}</Text>
           </View>
           <View style={tw`flex-row justify-between mt-1`}>
-            <Text style={tw`text-black text-sm`}>Sura</Text>
-            <Text style={tw`text-black text-sm`}>Smoke: Never</Text>
+            <Text style={tw`text-black text-sm`}>{careCenter}</Text>
+            <Text style={tw`text-black text-sm`}>Smoke: {smokeFrequency}</Text>
           </View>
         </LinearGradient>
 

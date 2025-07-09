@@ -2,7 +2,6 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-// Importa tus pantallas con default export
 import AuthScreen from "../features/auth/screen";
 import CareGroupsScreen from "../features/care-groups/screen";
 import OverviewScreen from "../features/overview/screen";
@@ -10,7 +9,14 @@ import OverviewScreen from "../features/overview/screen";
 export type RootStackParamList = {
   Auth: undefined;
   CareGroups: undefined;
-  Overview: { careGroupId: string; careGroupName: string };
+  Overview: {
+    careGroupId: string;
+    careGroupName: string;
+    birthDate: string;
+    careCenter: string;
+    alcoholLevel: string;
+    smokeFrequency: string;
+  };
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
