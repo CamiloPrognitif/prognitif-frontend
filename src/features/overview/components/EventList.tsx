@@ -3,7 +3,7 @@ import { View, Text, Pressable } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import tw from "twrnc";
 
-import type { Event } from "@types";
+import type { Event } from "types";
 
 interface EventListProps {
   events: Event[];

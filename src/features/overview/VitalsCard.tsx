@@ -2,7 +2,7 @@
 import React from "react";
 import { View, Text } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
-import type { Vital } from "@types";
+import type { Vital } from "types";
 
 export default function VitalsGrid({ data }: { data: Vital[] }) {
   return (

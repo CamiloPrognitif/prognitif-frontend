@@ -10,19 +10,18 @@ import {
 import tw from "twrnc";
 import { LinearGradient } from "expo-linear-gradient";
 import { MaterialIcons, MaterialCommunityIcons } from "@expo/vector-icons";
-
-import { useEventsCrud } from "../hooks";
-import type { Event } from "../types";
-import {
-  ModalForm,
-  HealthInfoModal,
-  VitalsSimulator,
-  Breadcrumb,
-} from "../components";
-import type { Crumb } from "../components/Breadcrumb";
+import EventList from "./components/EventList";
+import { useEventsCrud } from "./hooks/useEventsCrud";
+import type { Event } from "../../types";
+// Adjust the import paths below to match your actual file structure
+import ModalForm from "./components/ModalForm";
+import HealthInfoModal from "./components/HealthInfoModal";
+import VitalsSimulator from "./components/VitalsSimulator";
+import Breadcrumb from "./components/Breadcrumb";
+import type { Crumb } from "./components/Breadcrumb";
 
 import { useNavigation } from "@react-navigation/native";
-import { SECTIONS } from "../constants";
+import { SECTIONS } from "./constants";
 
 const sections = [
   {

@@ -1,7 +1,7 @@
 // src/hooks/useEventsCrud.ts
 import { useState, useEffect, useCallback } from "react";
-import { getEvents, saveEvents } from "@services/eventsService";
-import type { Event } from "@types";
+import { getEvents, saveEvents } from "../services/eventsService"; // Adjust the import path as needed
+import type { Event } from "types";
 
 export function useEventsCrud() {
   const [events, setEvents] = useState<Event[]>([]);
